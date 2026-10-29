@@ -1,194 +1,98 @@
 /* ==========================================================================
-   Shahreen Qasim Portfolio - Clean Scrolling Stylesheet
-   CIT331 Web Technologies - Single Page Application
+   Shahreen Qasim Portfolio Stylesheet
+   File: css/style.css
    ========================================================================== */
 
-/* Strict Design Tokens Preserved from Original Project */
-:root {
-  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-  --font-display: 'Space Grotesk', system-ui, -apple-system, sans-serif;
-  --font-mono: 'Fira Code', monospace;
-
-  /* Color Palette - Light */
-  --bg-primary: #f8faff;
-  --bg-surface: rgba(255, 255, 255, 0.88);
-  --bg-surface-elevated: #ffffff;
-  --bg-subtle: #f1f5f9;
-  --border-color: rgba(226, 232, 240, 0.85);
-  --border-hover: rgba(99, 102, 241, 0.45);
-  --text-main: #0f172a;
-  --text-muted: #64748b;
-  --text-subtle: #94a3b8;
-  --brand-primary: #4f46e5;
-  --brand-gradient: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
-  --glow-color: rgba(99, 102, 241, 0.15);
-  --card-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05);
-  --card-shadow-hover: 0 16px 30px -4px rgba(99, 102, 241, 0.18);
-}
-
-/* Dark Mode Overrides */
-html.dark {
-  --bg-primary: #0b0f19;
-  --bg-surface: rgba(17, 24, 39, 0.85);
-  --bg-surface-elevated: #1e293b;
-  --bg-subtle: #1e293b;
-  --border-color: rgba(51, 65, 85, 0.75);
-  --border-hover: rgba(129, 140, 248, 0.5);
-  --text-main: #f8fafc;
-  --text-muted: #94a3b8;
-  --text-subtle: #64748b;
-  --brand-primary: #818cf8;
-  --brand-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
-  --glow-color: rgba(99, 102, 241, 0.25);
-  --card-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.45);
-  --card-shadow-hover: 0 16px 30px -4px rgba(99, 102, 241, 0.35);
-}
-
-/* Base Scrolling Document Settings */
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 5rem;
-}
-
-body {
-  font-family: var(--font-sans);
-  background-color: var(--bg-primary);
-  color: var(--text-main);
-  transition: background-color 0.3s ease, color 0.3s ease;
-  overflow-x: hidden;
-  min-height: 100vh;
-}
-
-/* Headings */
-h1, h2, h3, h4, .font-display {
-  font-family: var(--font-display);
-}
-
-/* Custom Webkit Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-::-webkit-scrollbar-track {
-  background: var(--bg-primary);
-}
-::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
-  border-radius: 9999px;
-  border: 2px solid var(--bg-primary);
-}
-html.dark ::-webkit-scrollbar-thumb {
-  background: #334155;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: var(--brand-primary);
-}
-
-/* Sticky Glassmorphism Header */
+/* Glass Navigation Bar */
 .glass-nav {
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  background-color: var(--bg-surface);
-  border-bottom: 1px solid var(--border-color);
-}
-
-/* Nav Link Active State (Driven by IntersectionObserver) */
-.nav-link.active {
-  color: #4f46e5;
-  background-color: #ffffff;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.08);
-}
-html.dark .nav-link.active {
-  color: #a5b4fc;
-  background-color: #1e293b;
-  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.4);
-}
-
-/* Normal Glass Bento Card with Subtle Hover Lift */
-.glass-card {
-  background-color: var(--bg-surface);
+  background: rgba(255, 255, 255, 0.82);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  border: 1px solid var(--border-color);
-  box-shadow: var(--card-shadow);
+  border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+}
+.dark .glass-nav {
+  background: rgba(11, 15, 25, 0.85);
+  border-bottom: 1px solid rgba(30, 41, 59, 0.8);
+}
+
+/* Active Nav Link */
+.nav-link.active {
+  background-color: #4f46e5;
+  color: #ffffff !important;
+  box-shadow: 0 4px 12px -2px rgba(79, 70, 229, 0.35);
+}
+.dark .nav-link.active {
+  background-color: #4f46e5;
+  color: #ffffff !important;
+}
+
+/* Glass Bento Cards */
+.glass-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(226, 232, 240, 0.9);
   border-radius: 1.5rem;
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.04), 0 4px 6px -2px rgba(0, 0, 0, 0.02);
   transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
 }
+.dark .glass-card {
+  background: rgba(15, 23, 42, 0.75);
+  border: 1px solid rgba(51, 65, 85, 0.6);
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.3);
+}
 
-.glass-card:hover {
+/* Subtle Hover Lift for interactive cards */
+.glass-card-hover:hover {
   transform: translateY(-3px);
-  border-color: var(--border-hover);
-  box-shadow: var(--card-shadow-hover);
+  box-shadow: 0 20px 35px -8px rgba(79, 70, 229, 0.12);
+  border-color: rgba(99, 102, 241, 0.5);
 }
 
-/* Typing Text Cursor Animation */
-.typing-cursor::after {
-  content: '|';
-  color: var(--brand-primary);
-  animation: blink 1s step-start infinite;
+/* Code Window Styling */
+.code-window {
+  background: #0f172a;
+  border: 1px solid rgba(51, 65, 85, 0.8);
+  border-radius: 1.25rem;
+  box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.4);
 }
 
-@keyframes blink {
-  50% { opacity: 0; }
+/* Modal Backdrop */
+.modal-backdrop {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
-/* Gentle Scroll Reveal Animation */
+/* Keyframe Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+.animate-fadeIn {
+  animation: fadeIn 0.22s ease-out forwards;
+}
+
+/* Scroll Reveal Transition */
 .reveal-on-scroll {
   opacity: 0;
-  transform: translateY(18px);
-  transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1), transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform;
+  transform: translateY(22px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
-
-.reveal-on-scroll.reveal-visible {
+.reveal-on-scroll.is-visible {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* Ambient Backdrops */
-.ambient-glow {
-  position: absolute;
-  border-radius: 9999px;
-  filter: blur(80px);
-  pointer-events: none;
-  z-index: -10;
-  opacity: 0.65;
-}
-
+/* Hero Grid Background Pattern */
 .hero-grid-pattern {
-  background-image: radial-gradient(rgba(99, 102, 241, 0.14) 1px, transparent 1px);
-  background-size: 26px 26px;
-}
-html.dark .hero-grid-pattern {
-  background-image: radial-gradient(rgba(129, 140, 248, 0.16) 1px, transparent 1px);
-}
-
-/* Code Snippet Card */
-.code-window {
-  font-family: var(--font-mono);
-  background: #0f172a;
-  color: #e2e8f0;
-  border-radius: 1.25rem;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 16px 36px -12px rgba(0, 0, 0, 0.5);
-}
-
-/* Modal */
-.modal-backdrop {
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-}
-
-/* Respect Prefers Reduced Motion */
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto !important;
-  }
-  .reveal-on-scroll {
-    opacity: 1 !important;
-    transform: none !important;
-    transition: none !important;
-  }
-  .glass-card:hover {
-    transform: none !important;
-  }
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to right, rgba(99, 102, 241, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(99, 102, 241, 0.08) 1px, transparent 1px);
 }
